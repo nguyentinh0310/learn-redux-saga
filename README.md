@@ -1,44 +1,78 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+react-router-dom @types/react-router-dom
 
-## Available Scripts
+/login: /admin: layout
 
-In the project directory, you can run:
+/admin/* feature: /admin/dashboard feature: /admin/students
 
-### `yarn start`
+auth / authentication
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+login
+sign up / register
+forget password
+CLICK LOGIN
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Call API to login
+Success --> redirect ADMIN
+FAILED --> show ERROR
+LOGIN LOGOUT
 
-### `yarn test`
+authSaga
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+LOOP
 
-### `yarn build`
+if logged in, watch LOGOUT
+else watch LOGIN
+LOGIN
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+call login API to get token + user info
+set token to local storage
+redirect to admin page
+LOGOUT
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+clear token from local storage
+redirect to login page
+authSlice authSaga
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Students
+ROUTINGS
 
-### `yarn eject`
+/admin/students: listing
+/admin/students/add: add new student
+/admin/students/:studentId: update a student
+LISTING
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Search by name
+Filter by city
+Sort by name, mark
+Pagination
+student slice state:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+loading
+list
+pagination
+filter { page: 1, limit: 10, ... }
+ADD/EDIT
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+React Hook Form v7
+Yup
+ROUTINGS
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+/admin/students/add: add new student
+/admin/students/:studentId: update a student
+Student Form
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Mode: Add/Edit
+Initial values
+Values
+name: Text Input
+age: Number Input
+gender: Radio options
+city: Select
+mark: Number Input
+Validations: all required
+name: at least two words
+age: >= 18
+gender: male / female
+city: required
+mark: 0 -> 10
+Submission: redirect to student list page after submitting successfully
